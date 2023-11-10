@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {environments} from "./environments";
 import {Observable} from "rxjs";
+import {ClientPage} from "./models/client-page";
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainService {
-  apiUrl = `${environments.apiUrl}/client`;
+  apiUrl = `http://localhost:8080/api/v1/client`;
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -15,9 +15,10 @@ export class MainService {
     })
   };
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  getClientPage(): Observable<ClientPage> {
-    return this.httpClient.get<ClientPage>(this.apiUrl, this.httpOptions);
+  getClientPage(page: number): Observable<ClientPage> {
+    return this.httpClient.get<ClientPage>(this.apiUrl  + "?page=" + page, this.httpOptions);
   }
+
 }
