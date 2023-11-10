@@ -1,0 +1,40 @@
+header {
+  width: 100%;
+  height: 4rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+img {
+  width: 8rem;
+  height: 4rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  background: #ab2723;
+}
+
+.filters {
+  width: 12rem;
+  height: 360px;
+  background: #ed7004;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  width: 36rem;
+  height: 36rem;
+  background: #728529;
+}
+
+.item {
+  width: 12rem;
+  height: 16rem;
+  background: white;
+}
