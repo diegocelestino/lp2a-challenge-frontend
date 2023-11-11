@@ -17,6 +17,10 @@ button {
   border: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 button:hover,
 .item:hover {
   cursor: pointer;
@@ -27,6 +31,8 @@ button:active {
 }
 
 p {
+  font-size: 1.1rem;
+  text-align: center;
   margin: 2px;
   color: #212121;
 }
@@ -59,13 +65,14 @@ p {
 }
 
 .item {
-  padding-top: 2rem;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+  padding: 2rem 0.2rem;
   width: 12rem;
-  height: 16rem;
   border-radius: 16px;
   background: lightgray;
+}
+
+.item:hover {
+  transform: scale(1.05);
 }
 
 .item-container{
@@ -77,11 +84,12 @@ p {
   width: 8rem;
   height: 8rem;
   border-radius: 16px;
+  padding-bottom: 0.2rem;
 }
 
 .name {
-  font-size: 1.6rem;
-  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 .pagination {

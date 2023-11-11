@@ -1,0 +1,26 @@
+<section>
+  <div class="grid">
+
+    <img src="{{this.client?.picture?.large}}" class="photo-container">
+
+    <div class="profile">
+      <p class="name">{{this.client?.name}}</p>
+      <p>{{this.client?.gender}} - {{this.client?.birthday}}</p>
+      <p>{{this.client?.type}}</p>
+    </div>
+
+    <div class="address">
+      <p>{{this.client?.address?.street}}</p>
+      <p>{{this.client?.address?.city}} - {{this.client?.address?.state}}</p>
+      <p>{{this.client?.address?.postCode}} {{this.client?.address?.region}}</p>
+
+    </div>
+
+    <div class="contact">
+      <p>{{this.client?.email}}</p>
+      <p>{{this.client?.telephoneNumbers?.at(0)}}</p>
+      <p>{{this.client?.telephoneNumbers?.at(1)}}</p>
+    </div>
+  </div>
+
+</section>

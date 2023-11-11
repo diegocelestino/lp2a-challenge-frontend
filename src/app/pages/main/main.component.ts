@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MainService} from "../../core/main.service";
+import {ClientService} from "../../core/client.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ClientPage} from "../../core/models/client-page";
 import {first} from "rxjs";
+import {Client} from "../../core/models/client";
 
 @Component({
   selector: 'app-main',
@@ -14,7 +15,7 @@ export class MainComponent implements OnInit {
   page: number | undefined | null;
 
   constructor(
-    private mainService: MainService,
+    private clientService: ClientService,
     private route: ActivatedRoute,
     private router: Router,
   ) {}
@@ -22,17 +23,20 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.page = this.getPage();
     this.getClientPage(this.page);
-
   }
 
   private getClientPage(page: number) {
-    this.mainService.getClientPage(page)
+    this.clientService.getClientPage(page)
       .pipe(first())
       .subscribe({
         next: clientPage => {
           this.clientPage = clientPage;
         }
       })
+  }
+
+  getClientDetail(client: Client) {
+    location.replace('pages/' + client.id);
   }
 
   private getPage() {
@@ -44,21 +48,14 @@ export class MainComponent implements OnInit {
   }
 
   previous() {
-    this.router.navigate(
-      ['/pages'],
-      {queryParams: {page: this.page! -1}}
-    ).then(r => {
-      location.replace('pages?page=' + (parseInt(String(this.page!)) - 1));
-    });
+    this.router.navigate(['/pages'], {queryParams: {page: this.page! - 1}})
+      .then(r => this.ngOnInit());
   }
 
   next() {
-    this.router.navigate(
-      ['/pages'],
-      {queryParams: {page: this.page! + 1}}
-    ).then(r => {
-      location.replace('pages?page=' + (parseInt(String(this.page!)) + 1));
-    });
-   }
+    this.router.navigate(['/pages'], {queryParams: {page: this.page! + 1}})
+      .then(r => this.ngOnInit());
+    }
+
 
 }

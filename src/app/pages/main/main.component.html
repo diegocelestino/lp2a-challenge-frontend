@@ -8,23 +8,25 @@
   </div>
 
   <div class="list">
-    <div class="item" *ngFor="let client of this.clientPage?.clientDtoList">
+
+    <a routerLink="/pages/{{client.id}}" routerLinkActive="selected"
+      class="item" *ngFor="let client of this.clientPage?.clientDtoList">
 
       <div class="item-container"><img class="perfil" src="{{ client.picture.medium }}"></div>
       <div class="item-container"><p class="name">{{ client.name }}</p></div>
       <div class="item-container"><p>{{ client.address.city }}</p></div>
       <div class="item-container"><p>{{ client.address.state }}</p></div>
 
-    </div>
+    </a>
 
     <div class="pagination">
       <div class="row">
-        <button *ngIf="this.clientPage?.actualPage != 0" id="previous" (click)="previous()">
+        <button *ngIf="this.clientPage?.actualPage != 0" (click)="previous()">
           Anterior
         </button>
         <p> {{ this.clientPage?.actualPage! + 1 }} de {{ this.clientPage?.totalPages! }} </p>
         <button *ngIf="(this.clientPage?.actualPage! + 1) != this.clientPage?.totalPages"
-                id="next" (click)="next()">
+                (click)="next()">
           Seguinte
         </button>
       </div>
