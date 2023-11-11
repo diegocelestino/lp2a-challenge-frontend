@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MainService} from "../../core/main.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ClientPage} from "../../core/models/client-page";
 import {first} from "rxjs";
 
@@ -15,12 +15,14 @@ export class MainComponent implements OnInit {
 
   constructor(
     private mainService: MainService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
     this.page = this.getPage();
     this.getClientPage(this.page);
+
   }
 
   private getClientPage(page: number) {
@@ -29,7 +31,6 @@ export class MainComponent implements OnInit {
       .subscribe({
         next: clientPage => {
           this.clientPage = clientPage;
-          console.log(this.clientPage);
         }
       })
   }
@@ -42,5 +43,22 @@ export class MainComponent implements OnInit {
     return parseInt(page);
   }
 
+  previous() {
+    this.router.navigate(
+      ['/pages'],
+      {queryParams: {page: this.page! -1}}
+    ).then(r => {
+      location.replace('pages?page=' + (parseInt(String(this.page!)) - 1));
+    });
+  }
+
+  next() {
+    this.router.navigate(
+      ['/pages'],
+      {queryParams: {page: this.page! + 1}}
+    ).then(r => {
+      location.replace('pages?page=' + (parseInt(String(this.page!)) + 1));
+    });
+   }
 
 }
