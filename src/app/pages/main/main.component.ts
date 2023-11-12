@@ -13,6 +13,8 @@ import {Client} from "../../core/models/client";
 export class MainComponent implements OnInit {
   clientPage: ClientPage | undefined;
   page: number | undefined | null;
+  type: string | undefined | null;
+  region: string | undefined | null;
 
   constructor(
     private clientService: ClientService,
@@ -22,21 +24,20 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {
     this.page = this.getPage();
-    this.getClientPage(this.page);
+    this.type = this.getType();
+    this.region= this.getRegion();
+    console.log(this.type);
+    this.getClientPage(this.page, this.type, this.region);
   }
 
-  private getClientPage(page: number) {
-    this.clientService.getClientPage(page)
+  private getClientPage(page: number, type: string, region: string) {
+    this.clientService.getClientPage(page, type, region)
       .pipe(first())
       .subscribe({
         next: clientPage => {
           this.clientPage = clientPage;
         }
       })
-  }
-
-  getClientDetail(client: Client) {
-    location.replace('pages/' + client.id);
   }
 
   private getPage() {
@@ -47,15 +48,43 @@ export class MainComponent implements OnInit {
     return parseInt(page);
   }
 
+  private getType() {
+    let type = this.route.snapshot.queryParamMap.get("type");
+    if (type == null){
+      return "ALL";
+    }
+    return type;
+  }
+
+  private getRegion() {
+    let region = this.route.snapshot.queryParamMap.get("region");
+    if (region == null){
+      return "ALL";
+    }
+    return region;
+  }
+
+
   previous() {
-    this.router.navigate(['/pages'], {queryParams: {page: this.page! - 1}})
+    this.router.navigate(['/pages'],
+      {queryParams: {page: this.page! - 1, type: this.type, region: this.region}})
       .then(r => this.ngOnInit());
   }
 
   next() {
-    this.router.navigate(['/pages'], {queryParams: {page: this.page! + 1}})
+    this.router.navigate(['/pages'],
+      {queryParams: {page: this.page! + 1, type: this.type, region: this.region}})
       .then(r => this.ngOnInit());
     }
 
 
+  filterByType(type: string) {
+    this.router.navigate(['/pages'], {queryParams: {type: type}})
+      .then(r => this.ngOnInit());
+  }
+
+  filterByRegion(region: string) {
+    this.router.navigate(['/pages'], {queryParams: {region: region}})
+      .then(r => this.ngOnInit());
+  }
 }

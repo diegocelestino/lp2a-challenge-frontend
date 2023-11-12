@@ -22,7 +22,8 @@ a {
 }
 
 button:hover,
-.item:hover {
+.item:hover,
+p {
   cursor: pointer;
 }
 
@@ -35,6 +36,10 @@ p {
   text-align: center;
   margin: 2px;
   color: #212121;
+}
+
+p:hover {
+
 }
 
 .logo {
@@ -51,7 +56,7 @@ p {
 
 .filters {
   width: 12rem;
-  height: 360px;
+  height: 36rem;
   background: lightgray;
 }
 

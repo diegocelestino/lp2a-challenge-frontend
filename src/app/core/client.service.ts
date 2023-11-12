@@ -18,8 +18,9 @@ export class ClientService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getClientPage(page: number): Observable<ClientPage> {
-    return this.httpClient.get<ClientPage>(this.apiUrl  + "?page=" + page, this.httpOptions);
+  getClientPage(page: number, type: string, region: string): Observable<ClientPage> {
+    return this.httpClient.get<ClientPage>(
+      this.apiUrl  + "?page=" + page + "&type=" + type + "&region=" + region, this.httpOptions);
   }
 
   getClient(id: string): Observable<Client> {
