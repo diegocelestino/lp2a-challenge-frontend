@@ -1,18 +1,25 @@
+<div class="title">
+  <div class="holder">
+    <p class="page-name">Cliente</p>
+  </div>
+</div>
+
 <section>
   <div class="grid">
 
     <img src="{{this.client?.picture?.large}}" class="photo-container">
 
     <div class="profile">
-      <p class="name">{{this.client?.name}}</p>
-      <p>{{this.client?.gender}} - {{this.client?.birthday}}</p>
-      <p>{{this.client?.type}}</p>
+      <p class="name">{{this.client?.name | titlecase}}</p>
+      <p>Gênero: {{this.client?.gender! | gender}}</p>
+      <p>Data de Nascimento: {{this.client?.birthday | date:"dd/MM/yyyy"}}</p>
+      <p>Tipo: {{ this.client!.type! | clientType }}</p>
     </div>
 
     <div class="address">
-      <p>{{this.client?.address?.street}}</p>
-      <p>{{this.client?.address?.city}} - {{this.client?.address?.state}}</p>
-      <p>{{this.client?.address?.postCode}} {{this.client?.address?.region}}</p>
+      <p>{{this.client?.address?.street | titlecase}}</p>
+      <p>{{this.client?.address?.city | titlecase}} - {{this.client?.address?.state | titlecase}}</p>
+      <p>{{this.client?.address?.postCode}} {{this.client?.address?.region | titlecase}}</p>
 
     </div>
 

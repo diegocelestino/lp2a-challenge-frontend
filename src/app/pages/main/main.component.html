@@ -1,19 +1,20 @@
-
-<div>
-  <p>Clientes</p>
+<div class="title">
+  <div class="holder">
+    <p class="page-name">Clientes</p>
+  </div>
 </div>
 
 <div class="container">
   <div class="filters">
-    <p>Filtrar</p>
+    <p class="title">Filtros</p>
     <br>
-    <p>Tipo</p>
+    <p class="title">Tipo</p>
     <p (click)="this.filterByType('ALL')">Todos</p>
     <p (click)="this.filterByType('SPECIAL')">Especial</p>
     <p (click)="this.filterByType('NORMAL')">Normal</p>
     <p (click)="this.filterByType('LABORIOUS')">Trabalhoso</p>
     <br>
-    <p>Região</p>
+    <p class="title">Região</p>
     <p (click)="this.filterByRegion('sul')">Sul</p>
     <p (click)="this.filterByRegion('sudeste')">Sudeste</p>
     <p (click)="this.filterByRegion('centro oeste')">Centro-Oeste</p>
@@ -24,12 +25,12 @@
   <div class="list">
 
     <a routerLink="/pages/{{client.id}}" routerLinkActive="selected"
-      class="item" *ngFor="let client of this.clientPage?.clientDtoList">
+       class="item" *ngFor="let client of this.clientPage?.clientDtoList">
 
       <div class="item-container"><img class="perfil" src="{{ client.picture.medium }}"></div>
-      <div class="item-container"><p class="name">{{ client.name }}</p></div>
-      <div class="item-container"><p>{{ client.address.city }}</p></div>
-      <div class="item-container"><p>{{ client.address.state }}</p></div>
+      <div class="item-container"><p class="name">{{ client.name | titlecase}}</p></div>
+      <div class="item-container"><p>{{ client.address.city | titlecase}}</p></div>
+      <div class="item-container"><p>{{ client.address.state | titlecase}}</p></div>
 
     </a>
 

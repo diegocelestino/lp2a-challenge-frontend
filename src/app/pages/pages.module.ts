@@ -5,6 +5,8 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MainComponent } from './main/main.component';
 import {CoreModule} from "../core/core.module";
 import { DetailComponent } from './detail/detail.component';
+import {ClientType} from "../core/pipes/client-type";
+import {Gender} from "../core/pipes/gender";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { DetailComponent } from './detail/detail.component';
   imports: [
     CommonModule,
     PagesRoutingModule,
-    CoreModule
+    CoreModule,
+    ClientType,
+    Gender
   ]
 })
 export class PagesModule { }

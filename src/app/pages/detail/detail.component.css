@@ -6,6 +6,25 @@ section {
   width: 100vw;
 }
 
+.title {
+  margin-bottom: 1rem;
+  height: 4rem;
+  justify-content: center;
+  display: flex;
+}
+
+.holder {
+  display: flex;
+  justify-content: center;
+  height: 4rem;
+  width: 66rem;
+}
+
+.page-name {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
 .grid {
   position: relative;
   justify-content: center;
